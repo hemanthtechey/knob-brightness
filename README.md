@@ -16,6 +16,32 @@ Then turn on **knob-brightness** in the Accessibility list that opens
 
 If the Command Line Tools aren't installed yet, the script opens the installer for you. Run the command again once they're installed.
 
+## Manual install (step by step)
+
+Prefer to run each command yourself? Do this instead of the one-liner above.
+
+```bash
+# 1. Get the code
+git clone https://github.com/hemanthtechey/knob-brightness.git
+cd knob-brightness
+
+# 2. Build it
+mkdir -p ~/Library/Application\ Support/knob-brightness
+swiftc -O knob.swift -o ~/Library/Application\ Support/knob-brightness/knob-brightness
+
+# 3. Start it now and at every login
+sed "s|__HOME__|$HOME|" local.knob-brightness.plist > ~/Library/LaunchAgents/local.knob-brightness.plist
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/local.knob-brightness.plist
+```
+
+4. Go to **System Settings → Privacy & Security → Accessibility** and turn on **knob-brightness**.
+5. Hold **Ctrl** and turn the knob.
+
+If the brightness doesn't change, check the log at `/tmp/knob-brightness.log` and
+[open an issue](https://github.com/hemanthtechey/knob-brightness/issues) with its contents.
+
+Stop it: `launchctl bootout gui/$(id -u)/local.knob-brightness`
+
 ## Uninstall
 
 ```bash
