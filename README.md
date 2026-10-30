@@ -67,3 +67,7 @@ It's built from source on your Mac, so there's no prebuilt binary to trust.
 - Ctrl + volume works on every keyboard you have connected, including the MacBook's own keys.
 - Log: `/tmp/knob-brightness.log` · Self-test: `~/Library/Application\ Support/knob-brightness/knob-brightness --selftest`
 - If you reinstall, macOS sees a new binary, so you may need to turn it on again in Accessibility.
+
+## Licence
+
+MIT, see [LICENSE](LICENSE).
